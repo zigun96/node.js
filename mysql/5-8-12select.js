@@ -18,7 +18,7 @@ app.get("/", (req, res) => { // '=>' function의 람다식 표현
     // 비동기 전송
     "SELECT * FROM topic WHERE id = ?", [1],
     (err, results, fields) => { // '=>' function의 람다식 표현
-      console.log(err, results, fields);
+      console.log({err, results, fields});
       let [row] = results; // let row = result[0];
       body += `<h2>${row.title}</h2>`;
       body += row.description;
