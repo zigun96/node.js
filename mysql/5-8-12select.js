@@ -2,9 +2,9 @@ const express = require("express"); //'express'가 일종의 서버
 const mysql = require("mysql2");
 const app = express();
 
-require("dotenv").config(); // yarn add dotenv
+require("dotenv").config({ path: "mysql/.env" }); // yarn add dotenv
 
-app.get("/", function (req, res) {
+app.get("/", (req, res) => { // '=>' function의 람다식 표현
   // request, response
   const connection = mysql.createConnection({
     host: process.env.HOST,
@@ -13,16 +13,30 @@ app.get("/", function (req, res) {
     database: process.env.DATABASE,
   });
 
-  let body = "<h1>single row</h1>";
+  let body = "<h1>single row</h1>"; // 한 줄 출력
   connection.query(
-    "SELECT * FROM topic WHERE id = 1",
-    function (err, results, fields) {
-      console.log(err);
-      let row = results[0];
-      body += row.title;
-      res.send(body);
-      console.log(results);
-      console.log(fields);
+    // 비동기 전송
+    "SELECT * FROM topic WHERE id = ?", [1],
+    (err, results, fields) => { // '=>' function의 람다식 표현
+      console.log(err, results, fields);
+      let [row] = results; // let row = result[0];
+      body += `<h2>${row.title}</h2>`;
+      body += row.description;
+
+      body += "<h1>multi row</h1>"; // 여러 줄 출력
+      connection.query(
+        // 비동기 전송
+        "SELECT * FROM topic",
+        [1],
+        (err, results, fields) => { // '=>' function의 람다식 표현
+          console.log({err, results, fields});
+          for (let {title, description} of results) {
+            body += `<h2>${title}</h2>`;
+            body += description;
+          }
+          res.send(body);
+        }
+      );
     }
   );
 });
