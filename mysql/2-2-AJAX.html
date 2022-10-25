@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<hmtl lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AJAX</title>
+  </head>
+  <body>
+    <script>
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === xhr.DONE) {
+          var text = xhr.responseText;
+          /*200 OK: this is the standard response for successful HTTP requests
+            201 Created:	The request has been fulfilled, and a new resource is created */
+          if (xhr.status === 200 || xhr.status === 201) {
+            console.log(text);
+          } else {
+            console.log(text);
+          }
+          alert(JSON.parse(text).message);
+        }
+      };
+      xhr.open('GET', '2.2-AJAX.json');
+      xhr.send();
+    </script>
+  </body>
+</hmtl>
