@@ -1,4 +1,4 @@
-const condition = true;
+const condition = Math.random() < 0.5;
 const promise = new Promise((resolve, reject) => {
   if (condition) {
     resolve('성공');

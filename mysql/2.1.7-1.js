@@ -1,4 +1,4 @@
-const condition = true; // 구조만 보여준거
+const condition = Math.random() < 0.5; // true면 resolve, false면 reject
 const promise = new Promise((resolve, reject) => {
   if (condition) {
     resolve('성공');
