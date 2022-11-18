@@ -1,3 +1,4 @@
+// 피자 나눠먹기 (3)
 function solution(slice, n) {
   var answer = 0;
   answer = Math.ceil(n / slice);

@@ -1,3 +1,4 @@
+// 각도기
 function solution(angle) {
   var answer = 0;
   if (angle > 0 && angle < 90) {

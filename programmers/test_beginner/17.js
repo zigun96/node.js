@@ -1,3 +1,4 @@
+// 팩토리얼 함수
 function solution(n) {
   var answer = 1;
   for (var i = n; i > 0 ; i--){

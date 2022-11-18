@@ -1,9 +1,14 @@
-function solution(numbers) {
-  var answer = 0;
-  for(var item of numbers){
-      answer += item;
+// 짝수는 싫어요
+function solution(n) {
+  var answer = [];
+  for( var i = 1; i <= n; i++){
+    if( i % 2 != 0){
+      answer.push(i);
+    }
   }
-  return answer / numbers.length;
+  return answer;
 }
-console.log(solution([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
-console.log(solution([89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]));
+
+console.log(solution(10));
+
+console.log(solution(15));

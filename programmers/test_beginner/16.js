@@ -1,16 +1,15 @@
-function solution(numbers) {
-  var answer = 0;
-  var i = 0;
-  var hap = 0;
-  for(var item of numbers){
-      i += 1;
-      hap += item;
+// x만큼 간격이 있는 n개의 숫자
+function solution(x, n) {
+  var answer = [];
+  answer[0] = x;
+  for(var i = 1; i < n; i ++){
+      answer[i] = x * (i + 1); 
   }
-  answer = hap / i;
   return answer;
 }
-numbers = [1,2,3,4,5,6,7,8,9,10]
-console.log(solution(numbers));
 
-numbers = [89,90,91,92,93,94,95,96,97,98,99]
-console.log(solution(numbers));
+console.log(solution(2,5));
+
+console.log(solution(4,3));
+
+console.log(solution(-4,2));
