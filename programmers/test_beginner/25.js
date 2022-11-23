@@ -1,3 +1,4 @@
+// 옷가게 할인 받기
 function solution(price) {
   var answer = 0;
   if (price >= 500000) {

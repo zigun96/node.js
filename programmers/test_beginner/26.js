@@ -1,3 +1,4 @@
+// 점의 위치 구하기
 function solution(dot) {
   var answer = 0;
   if (dot[0] > 0) {

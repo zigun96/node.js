@@ -1,3 +1,4 @@
+// 제곱수 판별하기
 function solution(n) {
   var answer = 0;
   if(Math.sqrt(n) % 1 == 0){
