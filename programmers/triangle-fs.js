@@ -4,7 +4,14 @@ const fs = require('fs');
 let input = fs.readFileSync('/dev/stdin').toString();
 const n = Number(input); // 입력 값을 숫자 n으로 받는다.
 
-for (let i = 1; i <= n; i++) {
-  let output = '*'.repeat(i);
-  console.log(output);
+const numbers = new Array(n).fill().map((_, i)=> i + 1);
+
+// TODO: numbers에 for-of문 써서 풀어보기.
+for(value of numbers){
+  console.log('*'.repeat(value));
 }
+
+// .forEach() 메소드 활용
+// numbers.forEach((value) => {
+//   console.log('*'.repeat(value));
+// });
