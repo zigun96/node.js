@@ -12,3 +12,4 @@ var oldObject = {
 oldObject[es + 6] = 'Fantastic';
 oldObject.sayNode(); //Node
 console.log(oldObject.ES6); //Fantastic
+oldObject.sayJS(); //JS
