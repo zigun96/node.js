@@ -1,10 +1,10 @@
 const http = require('http');
-const fs = require('fs').promises;
+const fs = require('fs');
 const contentType = 'text/html; charset=utf-8';
 http
-  .createServer(async (req, res) => {
+  .createServer((req, res) => {
     try {
-      const data = await fs.readFile('./server2.html');
+      const data = fs.readFileSync('./server2.html');
       res.writeHead(200, { 'Content-Type': contentType });
       res.end(data);
     } catch (err) {
@@ -13,6 +13,6 @@ http
       res.end(err.message);
     }
   })
-  .listen(8081, () => {
-    console.log('http://localhost:8081 서버 대기중');
+  .listen(8082, () => {
+    console.log('http://localhost:8082 서버 대기중');
   });
