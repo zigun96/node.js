@@ -4,7 +4,7 @@ const contentType = 'text/html; charset=utf-8';
 http
   .createServer((req, res) => {
     try {
-      const data = fs.readFileSync('./server2.html');
+      const data = fs.readFileSync('./4.1-server2.html');
       res.writeHead(200, { 'Content-Type': contentType });
       res.end(data);
     } catch (err) {

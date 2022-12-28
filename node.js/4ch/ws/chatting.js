@@ -8,6 +8,7 @@ const wss = new ws.Server({ noServer: true });
 
 http
   .createServer((req, res) => {
+    console.log(req.headers);
     if (req.headers.upgrade?.toLowerCase() == 'websocket') {
       wss.handleUpgrade(req, req.socket, Buffer.alloc(0), onConnect);
     } else {
@@ -23,7 +24,7 @@ function onConnect(socket) {
   clients.add(socket);
   socket.on('message', (message) => {
     message = message.toString(); // Buffer를 String으로 
-    clients.forEach((clients) => clients.send(message));
+    clients.forEach((client) => client.send(message));
   });
   socket.on('close', () => {
     clients.delete(socket);

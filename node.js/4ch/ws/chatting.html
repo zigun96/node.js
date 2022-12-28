@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <form name="publish">
-  <input type="text" name="message" autocomplete="off" maxlength="50">
-  <input type="submit" value="전송">
+  <input type="text" name="message" autocomplete="off" maxlength="20"/>
+  <input type="submit" value="전송" />
 </form>
 <div id="message"></div>
 
 <script>
+  var nickname;
+  cookieStore.get('nick').then(({ value }) => {
+    nickname = value;
+    window.message.innerHTML += `<div>${value}님 환영합니다.</div>`;
+    history.pushState({}, '', '/');
+  });
+
   let socket = new WebSocket("ws://localhost:8888");
-  socket.onmessage = (event) => {
-    window.message.innerHTML += `<div>${event.data}</div>`;
+  socket.onmessage = ({ data }) => {
+    window.message.innerHTML += `<div>${data}</div>`;
   };
 
   document.forms.publish.onsubmit = function() {
-    socket.send(this.message.value);
+    let data = this.message.value;
+    // TODO: nickname이 있을 때만 메시지 앞에 nickname: 붙이기
+    data = nickname? `${nickname} : ${data}` : data;
+    socket.send(data);
     this.message.value = '';
     return false; // form이 submit 되는 것을 방지
   };
